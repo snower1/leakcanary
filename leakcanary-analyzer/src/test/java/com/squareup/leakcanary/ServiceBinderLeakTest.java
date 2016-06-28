@@ -89,4 +89,16 @@ public class ServiceBinderLeakTest {
     assertFalse(result.leakFound);
   }
 
+  @Test public void falseNegativeBinderLeak() {
+    // uncomment to fail
+    // excludedRefs.rootClass("android.os.Binder", true);
+
+    AnalysisResult result = analyze(
+        TestUtil.fileFromName("LC_issue_482.hprof"),
+        "8aeae2dd-98ec-4a91-a91c-c730a3332f76",
+        excludedRefs
+    );
+
+    assertTrue(result.leakFound);
+  }
 }
