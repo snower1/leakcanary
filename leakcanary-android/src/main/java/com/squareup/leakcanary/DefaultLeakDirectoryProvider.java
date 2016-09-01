@@ -20,14 +20,15 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.os.Environment;
+
 import com.squareup.leakcanary.internal.RequestStoragePermissionActivity;
+
 import java.io.File;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.M;
-import static android.os.Environment.DIRECTORY_DOWNLOADS;
 import static com.squareup.leakcanary.internal.LeakCanaryInternals.showNotification;
 
 public final class DefaultLeakDirectoryProvider implements LeakDirectoryProvider {
@@ -39,7 +40,8 @@ public final class DefaultLeakDirectoryProvider implements LeakDirectoryProvider
   }
 
   @Override public File leakDirectory() {
-    File downloadsDirectory = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
+//    File downloadsDirectory = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
+    File downloadsDirectory = context.getFilesDir();
     File directory = new File(downloadsDirectory, "leakcanary-" + context.getPackageName());
     boolean success = directory.mkdirs();
     if (!success && !directory.exists()) {

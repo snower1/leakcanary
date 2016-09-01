@@ -141,12 +141,12 @@ public final class DisplayLeakActivity extends Activity {
   @Override protected void onResume() {
     super.onResume();
     LeakDirectoryProvider leakDirectoryProvider = leakDirectoryProvider(this);
-    if (leakDirectoryProvider.isLeakStorageWritable()) {
+//    if (leakDirectoryProvider.isLeakStorageWritable()) {
       File leakDirectory = leakDirectoryProvider.leakDirectory();
       LoadLeaks.load(this, leakDirectory);
-    } else {
-      leakDirectoryProvider.requestPermission(this);
-    }
+//    } else {
+//      leakDirectoryProvider.requestPermission(this);
+//    }
   }
 
   @Override public void setTheme(int resid) {
