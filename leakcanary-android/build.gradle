@@ -9,12 +9,11 @@ buildscript {
 
 apply plugin: 'com.android.library'
 
-repositories {
-  mavenCentral()
-}
+
 
 dependencies {
-  compile project(':leakcanary-analyzer')
+//  compile project(':leakcanary-analyzer')
+  compile 'com.squareup.leakcanary:leakcanary-analyzer:1.4-beta2'
 }
 
 def gitSha() {
@@ -43,3 +42,6 @@ task sourceJar(type: Jar) {
 
 apply from: rootProject.file('gradle/checkstyle.gradle')
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
